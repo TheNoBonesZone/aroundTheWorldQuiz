@@ -28,6 +28,7 @@ quizApp.getData = () => {
             }
         }
         quizApp.getFlags(quizApp.topTen);
+        quizApp.displayFlagQ();
 
         quizApp.getAnswers(quizApp.shuffledCountries) // [{}, {}, {}]
     })
@@ -50,7 +51,12 @@ quizApp.getAnswers = (array) => {
 }
 
 quizApp.displayFlagQ = () => {
-    // topTen.forEach(item => ...)
+    quizApp.topTen.forEach(item => {
+        const flagImg = document.createElement('img');
+        flagImg.src = item.flags.png
+        flagImg.alt = `Official flag of ${item.name.common}`
+        document.querySelector('.flags-section').appendChild(flagImg);
+    })
     // create img element
     // edit img src to item's flag png
     // append to section .flags-section
@@ -74,6 +80,7 @@ const shuffleArray = (array) => {
 
 quizApp.init = () => {
     quizApp.getData();
+
 }
 
 quizApp.init();
