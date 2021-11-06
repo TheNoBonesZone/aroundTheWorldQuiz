@@ -4,6 +4,11 @@ quizApp.url = 'https://restcountries.com/v3.1/all';
 quizApp.shuffledCountries = [];
 quizApp.topTen = [];
 quizApp.flagArray = [];
+quizApp.answerBank = {
+    names: [],
+    capitals: [],
+    populations: []
+};
 // define answerBank object with key/array pairs: names, capitals, populations
 
 console.log(quizApp);
@@ -33,6 +38,14 @@ quizApp.getFlags = (array) => {
     })
 }
 
+quizApp.getAnswers = (array) =>{
+    console.log(array[10])
+    for (let i = 10; i < array.length; i++){
+        quizApp.answerBank.names.push(array[i])
+        quizApp.answerBank.capitals.push(array[i])
+        quizApp.answerBank.populations.push(array[i])
+    }
+}
 // define getAnswers:
 // for loop for 11-250;
 // - push names into quizApp.answerBank.names
