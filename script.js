@@ -9,7 +9,6 @@ quizApp.answerBank = {
     capitals: [],
     populations: []
 };
-// define answerBank object with key/array pairs: names, capitals, populations
 
 console.log(quizApp);
 
@@ -23,12 +22,14 @@ quizApp.getData = () => {
     }).then((data) => {
         quizApp.shuffledCountries = shuffleArray(data);
         console.log(quizApp.shuffledCountries);
-        for (let i = 0; i < 10; i++) {
-            quizApp.topTen.push(quizApp.shuffledCountries[i]);
+        for (let i = 0; quizApp.topTen.length < 10; i++) {
+            if (quizApp.shuffledCountries[i].capital != undefined) {
+                quizApp.topTen.push(quizApp.shuffledCountries[i]);
+            }
         }
         quizApp.getFlags(quizApp.topTen);
 
-        // call getAnswers
+        quizApp.getAnswers(quizApp.shuffledCountries) // [{}, {}, {}]
     })
 }
 
@@ -38,19 +39,22 @@ quizApp.getFlags = (array) => {
     })
 }
 
-quizApp.getAnswers = (array) =>{
-    console.log(array[10])
-    for (let i = 10; i < array.length; i++){
-        quizApp.answerBank.names.push(array[i])
-        quizApp.answerBank.capitals.push(array[i])
-        quizApp.answerBank.populations.push(array[i])
+quizApp.getAnswers = (array) => {
+    for (let i = 10; i < array.length; i++) {
+        quizApp.answerBank.names.push(array[i].name.common)
+        if (array[i].capital != undefined) {
+            quizApp.answerBank.capitals.push(array[i].capital[0])
+        }
+        quizApp.answerBank.populations.push(array[i].population)
     }
 }
-// define getAnswers:
-// for loop for 11-250;
-// - push names into quizApp.answerBank.names
-// - push capitals into quizApp.answerBank.capitals
-// - push populations into quizApp.answerBank.populations
+
+quizApp.displayFlagQ = () => {
+    // topTen.forEach(item => ...)
+    // create img element
+    // edit img src to item's flag png
+    // append to section .flags-section
+}
 
 const shuffleArray = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
