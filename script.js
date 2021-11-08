@@ -1,5 +1,7 @@
+// declare quizApp object
 const quizApp = {}
 
+// define quizApp properties + empty placeholders
 quizApp.url = 'https://restcountries.com/v3.1/all';
 quizApp.shuffledCountries = [];
 quizApp.topTen = [];
@@ -10,36 +12,39 @@ quizApp.answerBank = {
     populations: []
 };
 
-console.log(quizApp);
+// quizApp Method Declarations  ⬇️
 
-quizApp.makeQuestionData = () => {
-
+// init(): to be called when the page is loaded, at the end of the file
+quizApp.init = () => {
+    quizApp.getData();
 }
 
+// getData(): gets countries data from API via fetch api -> call methods to process that data -> manipulate the DOM
 quizApp.getData = () => {
     fetch(quizApp.url).then((response) => {
         return response.json();
     }).then((data) => {
+
         quizApp.shuffledCountries = shuffleArray(data);
-        console.log(quizApp.shuffledCountries);
-        for (let i = 0; quizApp.topTen.length < 10; i++) {
-            if (quizApp.shuffledCountries[i].capital != undefined) {
-                quizApp.topTen.push(quizApp.shuffledCountries[i]);
-            }
-        }
+
+        quizApp.getCountries(quizApp.shuffledCountries, 10);
+        quizApp.getAnswers(quizApp.shuffledCountries)
         quizApp.getFlags(quizApp.topTen);
         quizApp.displayFlagQ();
 
-        quizApp.getAnswers(quizApp.shuffledCountries) // [{}, {}, {}]
     })
 }
 
-quizApp.getFlags = (array) => {
-    array.forEach((item) => {
-        quizApp.flagArray.push(item.flags.png);
-    })
+// getCountries(array, numOfCountries): store 10 countries from the top of the shuffled countries array. option customize the number to retrieve with numOfCountries to be dynamic for future use
+quizApp.getCountries = (array, numOfCountries) => {
+    for (let i = 0; quizApp.topTen.length < numOfCountries; i++) {
+        if (array[i].capital != undefined) {
+            quizApp.topTen.push(array[i]);
+        }
+    }
 }
 
+// getAnswers(array): populate answer bank using data from the unselected countries (all the countries below the top ten)
 quizApp.getAnswers = (array) => {
     for (let i = 10; i < array.length; i++) {
         quizApp.answerBank.names.push(array[i].name.common)
@@ -50,6 +55,14 @@ quizApp.getAnswers = (array) => {
     }
 }
 
+// getFlags(array): retrives the image url from the country array of objects 
+quizApp.getFlags = (array) => {
+    array.forEach(item => {
+        quizApp.flagArray.push(item.flags.png);
+    })
+}
+
+// displayFlagQ(): displays flags from selectedCountries onto the questions page with an image element
 quizApp.displayFlagQ = () => {
     quizApp.topTen.forEach(item => {
         const flagImg = document.createElement('img');
@@ -57,11 +70,13 @@ quizApp.displayFlagQ = () => {
         flagImg.alt = `Official flag of ${item.name.common}`
         document.querySelector('.flags-section').appendChild(flagImg);
     })
-    // create img element
-    // edit img src to item's flag png
-    // append to section .flags-section
 }
 
+
+
+
+
+// Durstenfeld Shuffle algorithm, used to shuffle our retrieved countries array of objects to make sure we get different questions each run
 const shuffleArray = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -70,17 +85,5 @@ const shuffleArray = (array) => {
     return array;
 }
 
-
-
-
-
-
-
-
-
-quizApp.init = () => {
-    quizApp.getData();
-
-}
-
+// calling the quizApp
 quizApp.init();
