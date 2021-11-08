@@ -247,6 +247,10 @@ h1 {
   font-family: "Rowdies", cursive;
 }
 
+h2 {
+  margin-bottom: 0;
+}
+
 .uppercase {
   text-transform: uppercase;
 }
@@ -268,13 +272,43 @@ h3 {
 }
 
 section {
-  background-color: #77A6B6;
+  background-color: #FFFDF6;
+}
+
+.landingPage {
+  display: none;
+  height: 100vh;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.landingPage button {
+  font-weight: bold;
 }
 
 .blueBox {
-  height: 100vh;
-  padding: 100px 0;
-  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: #77A6B6;
+  border-radius: 10px;
+  width: 80%;
+  height: 90%;
+  padding-top: 50px;
   text-align: center;
 }
 
@@ -291,9 +325,34 @@ button {
   border-radius: 20px;
 }
 
+.questionPage {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 20px;
+}
+
 .questionCard {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 80%;
   background-color: #FFFDF6;
-  margin: 10%;
+  margin-bottom: 5%;
+  border-radius: 10px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .answerBox {
@@ -302,17 +361,16 @@ button {
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  width: 80%;
+  gap: 20px;
+  margin: 40px;
 }
 
 .answerBox button {
   background-color: #9AB8C2;
   border-radius: 20px;
-  -ms-flex-preferred-size: 400px;
-      flex-basis: 400px;
   margin: 0 auto;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  width: 80px;
+  width: calc(50% - 20px);
 }
 
 .blueBox button[type=submit] {
