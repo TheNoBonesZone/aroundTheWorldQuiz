@@ -234,3 +234,89 @@ html {
   clip: rect(0 0 0 0);
   overflow: hidden;
 }
+
+html {
+  font-size: 125%;
+}
+
+p, button, h2, h3 {
+  font-family: "Roboto", sans-serif;
+}
+
+h1 {
+  font-family: "Rowdies", cursive;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.spanLanding p.uppercase {
+  font-weight: bold;
+}
+
+p, h1, button {
+  color: white;
+}
+
+h2 {
+  color: #605F5F;
+}
+
+h3 {
+  color: black;
+}
+
+section {
+  background-color: #77A6B6;
+}
+
+.blueBox {
+  height: 100vh;
+  padding: 100px 0;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.spanLanding {
+  display: inline-block;
+  margin-top: 30px;
+}
+
+button {
+  background-color: #78B677;
+  border: none;
+  padding: 15px;
+  width: 100px;
+  border-radius: 20px;
+}
+
+.questionCard {
+  background-color: #FFFDF6;
+  margin: 10%;
+}
+
+.answerBox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.answerBox button {
+  background-color: #9AB8C2;
+  border-radius: 20px;
+  -ms-flex-preferred-size: 400px;
+      flex-basis: 400px;
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 80px;
+}
+
+.blueBox button[type=submit] {
+  padding: 15px;
+  width: 200px;
+  border-radius: 20px;
+}
