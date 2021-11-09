@@ -30,7 +30,7 @@ quizApp.getData = () => {
         quizApp.getCountries(quizApp.shuffledCountries, 10);
         quizApp.getAnswers(quizApp.shuffledCountries)
         quizApp.getFlags(quizApp.topTen);
-        // quizApp.displayFlagQ();
+        quizApp.displayFlagQ2();
         quizApp.startButton();
 
     })
@@ -74,6 +74,19 @@ quizApp.displayFlagQ = () => {
 }
 
 quizApp.displayFlagQ2 = () => {
+    const questionBox = document.getElementById('questionPack')
+
+    for (let i = 0; i < quizApp.topTen.length; i++) {
+        const questionDiv = document.createElement('div')
+        questionDiv.className = 'questionCard'
+        questionDiv.innerHTML = `<h2>Question ${i + 1}</h2> <h3> What country does this flag belong to?</h3> <img src='${quizApp.topTen[i].flags.png}' alt='flag of ${quizApp.topTen[i].name.common}'>`
+        questionBox.appendChild(questionDiv);
+    }
+
+    const submitButton = document.createElement('button')
+    submitButton.className = 'uppercase'
+    submitButton.innerHTML = '<p>Submit Quiz</p>'
+    questionBox.appendChild(submitButton)
     // for loop for 10 things (i = 0)
     // createElement div.questionCard
     // innerHtml => ``
@@ -83,9 +96,9 @@ quizApp.startButton = () => {
     const firstButton = document.getElementById("startButton")
     // add event listener to display question page to flex and landing page to none
     firstButton.addEventListener('click', () => {
-        console.log(this)
+                    console.log(this)
         document.querySelector('.landingPage').style.display = 'none',
-            document.querySelector('.questionPage').style.display = 'flex'
+                document.querySelector('.questionPage').style.display = 'flex'
     })
 }
 
@@ -97,10 +110,10 @@ quizApp.startButton = () => {
 const shuffleArray = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
+                [array[i], array[j]] = [array[j], array[i]];
     }
-    return array;
+                return array;
 }
 
-// calling the quizApp
-quizApp.init();
+                // calling the quizApp
+                quizApp.init();

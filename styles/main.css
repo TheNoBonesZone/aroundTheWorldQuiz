@@ -373,7 +373,7 @@ button {
   width: calc(50% - 20px);
 }
 
-.blueBox button[type=submit] {
+.blueBox button {
   padding: 15px;
   width: 200px;
   border-radius: 20px;
