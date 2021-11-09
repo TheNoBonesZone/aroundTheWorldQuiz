@@ -17,8 +17,8 @@ section{
 }
 
 .landingPage{
-    display: none;
-    // display: flex;
+    // display: none;
+    display: flex;
     height: 100vh;
     justify-content: center;
     align-items: center;
@@ -57,7 +57,8 @@ button{
 // QUESTION CARD STYLING
 
 .questionPage{
-    display: flex;
+    display: none;
+    // display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 20px;

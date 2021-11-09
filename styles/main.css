@@ -276,7 +276,9 @@ section {
 }
 
 .landingPage {
-  display: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   height: 100vh;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
@@ -326,9 +328,7 @@ button {
 }
 
 .questionPage {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  display: none;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;

@@ -30,7 +30,8 @@ quizApp.getData = () => {
         quizApp.getCountries(quizApp.shuffledCountries, 10);
         quizApp.getAnswers(quizApp.shuffledCountries)
         quizApp.getFlags(quizApp.topTen);
-        quizApp.displayFlagQ();
+        // quizApp.displayFlagQ();
+        quizApp.startButton();
 
     })
 }
@@ -69,6 +70,20 @@ quizApp.displayFlagQ = () => {
         flagImg.src = item.flags.png
         flagImg.alt = `Official flag of ${item.name.common}`
         document.querySelector('.flags-section').appendChild(flagImg);
+    })
+}
+
+quizApp.displayFlagQ2 = () =>{
+    
+}
+
+quizApp.startButton = () =>{
+    const firstButton = document.getElementById("startButton")
+    // add event listener to display question page to flex and landing page to none
+    firstButton.addEventListener('click', () =>{
+        console.log(this)
+        document.querySelector('.landingPage').style.display = 'none',
+        document.querySelector('.questionPage').style.display = 'flex'
     })
 }
 
