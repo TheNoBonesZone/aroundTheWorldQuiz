@@ -73,17 +73,19 @@ quizApp.displayFlagQ = () => {
     })
 }
 
-quizApp.displayFlagQ2 = () =>{
-    
+quizApp.displayFlagQ2 = () => {
+    // for loop for 10 things (i = 0)
+    // createElement div.questionCard
+    // innerHtml => ``
 }
 
-quizApp.startButton = () =>{
+quizApp.startButton = () => {
     const firstButton = document.getElementById("startButton")
     // add event listener to display question page to flex and landing page to none
-    firstButton.addEventListener('click', () =>{
+    firstButton.addEventListener('click', () => {
         console.log(this)
         document.querySelector('.landingPage').style.display = 'none',
-        document.querySelector('.questionPage').style.display = 'flex'
+            document.querySelector('.questionPage').style.display = 'flex'
     })
 }
 
