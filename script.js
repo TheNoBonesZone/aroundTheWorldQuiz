@@ -30,9 +30,8 @@ quizApp.getData = () => {
         quizApp.getCountries(quizApp.shuffledCountries, 10);
         quizApp.getAnswers(quizApp.shuffledCountries)
         quizApp.getFlags(quizApp.topTen);
-        quizApp.displayFlagQ2();
+        quizApp.displayFlagQ();
         quizApp.startButton();
-
     })
 }
 
@@ -65,55 +64,62 @@ quizApp.getFlags = (array) => {
 
 // displayFlagQ(): displays flags from selectedCountries onto the questions page with an image element
 quizApp.displayFlagQ = () => {
-    quizApp.topTen.forEach(item => {
-        const flagImg = document.createElement('img');
-        flagImg.src = item.flags.png
-        flagImg.alt = `Official flag of ${item.name.common}`
-        document.querySelector('.flags-section').appendChild(flagImg);
-    })
-}
-
-quizApp.displayFlagQ2 = () => {
     const questionBox = document.getElementById('questionPack')
 
     for (let i = 0; i < quizApp.topTen.length; i++) {
-        const questionDiv = document.createElement('div')
-        questionDiv.className = 'questionCard'
-        questionDiv.innerHTML = `<h2>Question ${i + 1}</h2> <h3> What country does this flag belong to?</h3> <img src='${quizApp.topTen[i].flags.png}' alt='flag of ${quizApp.topTen[i].name.common}'>`
-        questionBox.appendChild(questionDiv);
+        const questionCard = document.createElement('div')
+        questionCard.className = 'questionCard'
+        questionCard.innerHTML = `
+            <h2>Question ${i + 1}</h2> 
+            <h3> What country does this flag belong to?</h3> 
+            <img src='${quizApp.topTen[i].flags.png}' alt='flag of ${quizApp.topTen[i].name.common}'>
+            `
+
+        const answerArray = []; // [1, 2, 3, 4]
+        answerArray.push(quizApp.topTen[i].name.common);
+        for (let j = 0; j < 3; j++) {
+            answerArray.push(quizApp.answerBank.names.pop())
+        }
+        shuffleArray(answerArray);
+
+        const answerBox = document.createElement('div');
+        answerBox.className = 'answerBox';
+
+        answerArray.forEach(answer => {
+            const btn = document.createElement('button');
+            btn.className = "uppercase";
+            btn.textContent = answer;
+            answerBox.appendChild(btn);
+        })
+
+        questionCard.appendChild(answerBox);
+        questionBox.appendChild(questionCard);
     }
 
     const submitButton = document.createElement('button')
     submitButton.className = 'uppercase'
     submitButton.innerHTML = '<p>Submit Quiz</p>'
     questionBox.appendChild(submitButton)
-    // for loop for 10 things (i = 0)
-    // createElement div.questionCard
-    // innerHtml => ``
 }
 
 quizApp.startButton = () => {
     const firstButton = document.getElementById("startButton")
     // add event listener to display question page to flex and landing page to none
     firstButton.addEventListener('click', () => {
-                    console.log(this)
+        console.log(this)
         document.querySelector('.landingPage').style.display = 'none',
-                document.querySelector('.questionPage').style.display = 'flex'
+            document.querySelector('.questionPage').style.display = 'flex'
     })
 }
-
-
-
-
 
 // Durstenfeld Shuffle algorithm, used to shuffle our retrieved countries array of objects to make sure we get different questions each run
 const shuffleArray = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
+        [array[i], array[j]] = [array[j], array[i]];
     }
-                return array;
+    return array;
 }
 
-                // calling the quizApp
-                quizApp.init();
+// calling the quizApp
+quizApp.init();
