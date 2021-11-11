@@ -2,7 +2,7 @@ html{
     font-size: 125%;
 }
 
-p, button, h2, h3{
+p, button, h2, h3, label{
     font-family: 'Roboto', sans-serif;
 }
 
@@ -21,8 +21,14 @@ h2{
     font-weight: bold;
 }
 
-p, h1, button{
+p, h1, button, label{
     color: white;
+}
+
+label {
+    text-transform: uppercase;
+    font-weight: 500;
+    line-height: 25px;
 }
 
 h2{

@@ -86,10 +86,10 @@ quizApp.displayFlagQ = () => {
         answerBox.className = 'answerBox';
 
         answerArray.forEach(answer => {
-            const btn = document.createElement('button');
-            btn.className = "uppercase";
-            btn.textContent = answer;
-            answerBox.appendChild(btn);
+            const btnBox = document.createElement('div');
+            btnBox.innerHTML = `<input type="radio" name="answers${i + 1}" id="${answer}">
+                    <label for="${answer}">${answer}</label>`
+            answerBox.appendChild(btnBox);
         })
 
         questionCard.appendChild(answerBox);
@@ -109,6 +109,21 @@ quizApp.startButton = () => {
         console.log(this)
         document.querySelector('.landingPage').style.display = 'none',
             document.querySelector('.questionPage').style.display = 'flex'
+    })
+}
+
+quizApp.checkTextLength = () => {
+    const allAnswers = document.querySelectorAll('label');
+    allAnswers.forEach(item => {
+        if (item.textContent.length > 20) {
+            const label = document.getElementById(item.textContent)
+            label.nextElementSibling.style.fontSize = '14px';
+            console.log(label);
+        } else if (item.textContent.length > 16) {
+            const label = document.getElementById(item.textContent)
+            label.nextElementSibling.style.fontSize = '16px';
+            console.log(label);
+        }
     })
 }
 
