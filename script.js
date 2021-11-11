@@ -32,6 +32,7 @@ quizApp.getData = () => {
         quizApp.getFlags(quizApp.topTen);
         quizApp.displayFlagQ();
         quizApp.startButton();
+        quizApp.submitQuiz();
     })
 }
 
@@ -98,8 +99,11 @@ quizApp.displayFlagQ = () => {
 
     const submitButton = document.createElement('button')
     submitButton.className = 'uppercase'
+    submitButton.id = 'submitBtn'
     submitButton.innerHTML = '<p>Submit Quiz</p>'
     questionBox.appendChild(submitButton)
+
+    quizApp.checkTextLength();
 }
 
 quizApp.startButton = () => {
@@ -115,15 +119,44 @@ quizApp.startButton = () => {
 quizApp.checkTextLength = () => {
     const allAnswers = document.querySelectorAll('label');
     allAnswers.forEach(item => {
-        if (item.textContent.length > 20) {
+        // if (item.textContent.length > 20) {
+        //     const label = document.getElementById(item.textContent)
+        //     label.nextElementSibling.style.fontSize = '14px';
+        //     console.log(label);
+        // } else 
+        if (item.textContent.length > 16) {
             const label = document.getElementById(item.textContent)
-            label.nextElementSibling.style.fontSize = '14px';
-            console.log(label);
-        } else if (item.textContent.length > 16) {
-            const label = document.getElementById(item.textContent)
-            label.nextElementSibling.style.fontSize = '16px';
+            label.nextElementSibling.style.fontSize = '18px';
+            label.nextElementSibling.style.lineHeight = '20px';
+            label.nextElementSibling.style.padding = '4px';
             console.log(label);
         }
+    })
+}
+
+quizApp.getScore = () => {
+    // variable to store score = 0
+    // iterate through each question quizApp.topTen
+    // document.querySelectAll(`input[name='answers${i}']`) this returns all 4 inputs
+    // in question -> check if :checked.value === quizApp.topTen.[i].name.common
+    // if correct, add class '.correct', score = score + 1
+    // if wrong, add class '.incorrect' and '.correct' on the correct one
+
+    const answersList = document.querySelectorAll(`input[name='answers1']`)
+    console.log(answersList);
+}
+
+quizApp.displayScore = () => {
+    // run getScore
+    // append to HTML, dom stuff with score/10
+}
+
+quizApp.submitQuiz = () => {
+    // event listener for the submit button
+    // runs displayScore
+    const submitBtn = document.getElementById('submitBtn')
+    submitBtn.addEventListener('click', () => {
+        quizApp.getScore();
     })
 }
 

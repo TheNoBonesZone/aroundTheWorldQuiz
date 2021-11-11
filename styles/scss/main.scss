@@ -29,6 +29,7 @@ section{
 }
 .blueBox{
     display: flex;
+    flex-wrap: wrap;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -99,13 +100,15 @@ button{
 
 .answerBox label {
     box-sizing: border-box;
-    display: inline-block;
     padding: 10px 20px;
     height: 50px;
     width: 100%;
     background-color: #9AB8C2;
     border-radius: 20px;
     margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .answerBox input[type="radio"]:checked + label,
@@ -131,8 +134,9 @@ button{
     width: calc(50% - 20px);
 }
 
-.blueBox button{
-    padding: 15px;
+.blueBox button {
+    padding: 5px 15px;
     width: 200px;
     border-radius: 20px;
+    margin-bottom: 75px;
 }
