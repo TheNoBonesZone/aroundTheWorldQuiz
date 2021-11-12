@@ -142,8 +142,21 @@ quizApp.getScore = () => {
     // if correct, add class '.correct', score = score + 1
     // if wrong, add class '.incorrect' and '.correct' on the correct one
 
-    const answersList = document.querySelectorAll(`input[name='answers1']`)
-    console.log(answersList);
+    let score = 0;
+
+    for(let i = 1; i <= quizApp.topTen.length; i++){
+        const answerNodeList = document.querySelectorAll(`input[name='answers${i}']`);
+        answerNodeList.forEach(item => {
+            if (item.checked===true){
+                if (item.id===quizApp.topTen[i -1].name.common){
+                    score = score + 1
+                    item.nextElementSibling.className = "correct"
+                } 
+            }
+        })
+    }
+    console.log(score)
+
 }
 
 quizApp.displayScore = () => {
