@@ -26,7 +26,7 @@ quizApp.getData = () => {
     }).then((data) => {
 
         quizApp.shuffledCountries = shuffleArray(data);
-
+        quizApp.topTen = [];
         quizApp.getCountries(quizApp.shuffledCountries, 10);
         quizApp.getAnswers(quizApp.shuffledCountries)
         quizApp.getFlags(quizApp.topTen);
@@ -173,6 +173,12 @@ quizApp.getScore = () => {
         restartBtn.className = "uppercase restart";
         restartBtn.innerText = "Restart"
         scoreSheet.appendChild(restartBtn);
+
+        restartBtn.addEventListener('click', () =>{
+            document.querySelector("#questionPack").innerHTML = "";
+            quizApp.getData();
+        })
+
 }
 
 quizApp.displayScore = () => {
