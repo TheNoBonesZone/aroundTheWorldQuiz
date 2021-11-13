@@ -134,12 +134,6 @@ quizApp.checkTextLength = () => {
 }
 
 quizApp.getScore = () => {
-    // variable to store score = 0
-    // iterate through each question quizApp.topTen
-    // document.querySelectAll(`input[name='answers${i}']`) this returns all 4 inputs
-    // in question -> check if :checked.value === quizApp.topTen.[i].name.common
-    // if correct, add class '.correct', score = score + 1
-    // if wrong, add class '.incorrect' and '.correct' on the correct one
 
     let score = 0;
 
@@ -147,14 +141,24 @@ quizApp.getScore = () => {
         const answerNodeList = document.querySelectorAll(`input[name='answers${i}']`);
         answerNodeList.forEach(item => {
             if (item.checked === true) {
+                item.disabled = true;
                 if (item.id === quizApp.topTen[i - 1].name.common) {
                     score = score + 1;
                     item.checked = false;
                     item.nextElementSibling.className = "correct";
-                    console.log(item);
-                    console.log(item.nextElementSibling);
+                    console.log(item)
+                } else{
+                    item.checked = false;
+                    item.nextElementSibling.className = "incorrect";
                 }
-            }
+            } else{
+                item.disabled = true;
+                if (item.id === quizApp.topTen[i - 1].name.common) {
+                    item.nextElementSibling.className = "correct";
+                    
+            }}
+
+        
         })
     }
     console.log(score)
@@ -162,8 +166,15 @@ quizApp.getScore = () => {
 }
 
 quizApp.displayScore = () => {
+    getScore();
+    document.createElement('div')
+    quizApp.displayScore.className = "score"
+    quizApp.displayScore.innerHTML = `<h2>Your score is ${score} out of 10!`;
+
+
     // run getScore
     // append to HTML, dom stuff with score/10
+    // append to questionPack
 }
 
 quizApp.submitQuiz = () => {
