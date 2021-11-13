@@ -104,6 +104,7 @@ quizApp.displayFlagQ = () => {
     questionBox.appendChild(submitButton)
 
     quizApp.checkTextLength();
+
 }
 
 quizApp.startButton = () => {
@@ -163,19 +164,25 @@ quizApp.getScore = () => {
     }
     console.log(score)
 
+    const scoreSheet = document.createElement('div');
+        scoreSheet.className = "score";
+        scoreSheet.innerHTML = `<h2>Your score is ${score} out of 10!`;
+        questionPack.appendChild(scoreSheet);
+
+    const restartBtn = document.createElement('button');
+        restartBtn.className = "uppercase restart";
+        restartBtn.innerText = "Restart"
+        scoreSheet.appendChild(restartBtn);
 }
 
 quizApp.displayScore = () => {
     getScore();
-    document.createElement('div')
-    quizApp.displayScore.className = "score"
-    quizApp.displayScore.innerHTML = `<h2>Your score is ${score} out of 10!`;
+}
 
 
     // run getScore
     // append to HTML, dom stuff with score/10
     // append to questionPack
-}
 
 quizApp.submitQuiz = () => {
     // event listener for the submit button
@@ -183,6 +190,11 @@ quizApp.submitQuiz = () => {
     const submitBtn = document.getElementById('submitBtn')
     submitBtn.addEventListener('click', () => {
         quizApp.getScore();
+        submitBtn.style.display = 'none';
+
+
+
+
     })
 }
 

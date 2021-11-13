@@ -140,3 +140,25 @@ button{
     border-radius: 20px;
     margin-bottom: 75px;
 }
+
+.score{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    background-color: #FFFDF6;
+    margin-bottom: 5%;
+    border-radius: 10px;
+    align-items: center;
+    gap: 60px;
+    padding: 20px;
+}
+
+.score h2, .score button{
+    margin: 0;
+}
+
+.score button{
+    padding: 15px 15px;
+}
