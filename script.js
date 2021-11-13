@@ -129,7 +129,6 @@ quizApp.checkTextLength = () => {
             label.nextElementSibling.style.fontSize = '18px';
             label.nextElementSibling.style.lineHeight = '20px';
             label.nextElementSibling.style.padding = '4px';
-            console.log(label);
         }
     })
 }
@@ -144,14 +143,17 @@ quizApp.getScore = () => {
 
     let score = 0;
 
-    for(let i = 1; i <= quizApp.topTen.length; i++){
+    for (let i = 1; i <= quizApp.topTen.length; i++) {
         const answerNodeList = document.querySelectorAll(`input[name='answers${i}']`);
         answerNodeList.forEach(item => {
-            if (item.checked===true){
-                if (item.id===quizApp.topTen[i -1].name.common){
-                    score = score + 1
-                    item.nextElementSibling.className = "correct"
-                } 
+            if (item.checked === true) {
+                if (item.id === quizApp.topTen[i - 1].name.common) {
+                    score = score + 1;
+                    item.checked = false;
+                    item.nextElementSibling.className = "correct";
+                    console.log(item);
+                    console.log(item.nextElementSibling);
+                }
             }
         })
     }
