@@ -277,6 +277,11 @@ h3 {
   color: black;
 }
 
+@media (max-width: 768px) {
+  label {
+    line-height: 25px;
+  }
+}
 section {
   background-color: #FFFDF6;
 }
@@ -322,7 +327,7 @@ section {
   border-radius: 10px;
   max-width: 1200px;
   width: 80%;
-  height: 90%;
+  height: 100%;
   min-height: 500px;
   padding-top: 50px;
   text-align: center;
@@ -350,6 +355,26 @@ button {
     height: 100%;
     width: 100%;
     border-radius: 0;
+  }
+}
+@media (max-width: 480px) {
+  .landingPage .blueBox p,
+.landingPage .blueBox h1,
+.landingPage .blueBox .spanLanding {
+    width: 80%;
+  }
+
+  .spanLanding {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
   }
 }
 .questionPage {
@@ -501,5 +526,15 @@ button {
 
   .questionCard {
     width: 80%;
+  }
+}
+@media (max-width: 480px) {
+  .questionCard {
+    width: 100%;
+    border-radius: 0;
+  }
+
+  .answerBox > div {
+    width: 100%;
   }
 }

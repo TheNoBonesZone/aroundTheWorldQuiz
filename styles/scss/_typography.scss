@@ -40,3 +40,10 @@ h3{
     color: black;
 }
 
+// RESPONSIVE STYLING:
+
+@media (max-width: 768px){
+    label{
+        line-height: 25px;
+    }
+}

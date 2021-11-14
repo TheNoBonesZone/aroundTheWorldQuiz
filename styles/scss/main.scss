@@ -134,3 +134,14 @@
         width: 80%;
     }
 }
+
+@media (max-width: 480px){
+    .questionCard{
+        width: 100%;
+        border-radius: 0;
+    }
+
+    .answerBox > div{
+        width: 100%;
+    }
+}
