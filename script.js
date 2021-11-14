@@ -207,7 +207,6 @@ quizApp.displayError = () => {
 
     const landingPage = document.querySelector('.landingPage .blueBox');
     landingPage.appendChild(errorMessage);
-
 }
 
 // Durstenfeld Shuffle algorithm, used to shuffle our retrieved countries array of objects to make sure we get different questions each run
