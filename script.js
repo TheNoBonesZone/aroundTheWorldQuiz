@@ -14,26 +14,35 @@ quizApp.answerBank = {
 
 // quizApp Method Declarations  ⬇️
 
-// init(): to be called when the page is loaded, at the end of the file
+// init() method
 quizApp.init = () => {
     quizApp.getData();
 }
 
 // getData(): gets countries data from API via fetch api -> call methods to process that data -> manipulate the DOM
 quizApp.getData = () => {
-    fetch(quizApp.url).then((response) => {
-        return response.json();
-    }).then((data) => {
-
-        quizApp.shuffledCountries = shuffleArray(data);
-        quizApp.topTen = [];
-        quizApp.getCountries(quizApp.shuffledCountries, 10);
-        quizApp.getAnswers(quizApp.shuffledCountries)
-        quizApp.getFlags(quizApp.topTen);
-        quizApp.displayFlagQ();
-        quizApp.startButton();
-        quizApp.submitQuiz();
+    fetch(quizApp.url).then(response => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            throw new Error("Oops! Something went wrong when fetching the data!")
+        }
     })
+        .then(data => {
+            document.getElementById('startButton').disabled = false;
+            quizApp.shuffledCountries = quizApp.shuffleArray(data);
+            quizApp.topTen = [];
+            quizApp.getCountries(quizApp.shuffledCountries, 10);
+            quizApp.getAnswers(quizApp.shuffledCountries)
+            quizApp.getFlags(quizApp.topTen);
+            quizApp.displayFlagQ();
+            quizApp.startButton();
+            quizApp.submitQuiz();
+        })
+        .catch(err => {
+            console.log(err)
+            quizApp.displayError();
+        })
 }
 
 // getCountries(array, numOfCountries): store 10 countries from the top of the shuffled countries array. option customize the number to retrieve with numOfCountries to be dynamic for future use
@@ -67,6 +76,7 @@ quizApp.getFlags = (array) => {
 quizApp.displayFlagQ = () => {
     const questionBox = document.getElementById('questionPack')
 
+    // make a question for each of the selected countries in the topTen array:
     for (let i = 0; i < quizApp.topTen.length; i++) {
         const questionCard = document.createElement('div')
         questionCard.className = 'questionCard'
@@ -76,12 +86,13 @@ quizApp.displayFlagQ = () => {
             <img src='${quizApp.topTen[i].flags.png}' alt='flag of ${quizApp.topTen[i].name.common}'>
             `
 
-        const answerArray = []; // [1, 2, 3, 4]
+        // make answers/buttons for each question: store answers into an array with correct answer + 3 random answer from generated answer bank
+        const answerArray = [];
         answerArray.push(quizApp.topTen[i].name.common);
         for (let j = 0; j < 3; j++) {
             answerArray.push(quizApp.answerBank.names.pop())
         }
-        shuffleArray(answerArray);
+        quizApp.shuffleArray(answerArray);
 
         const answerBox = document.createElement('div');
         answerBox.className = 'answerBox';
@@ -107,24 +118,21 @@ quizApp.displayFlagQ = () => {
 
 }
 
+// startButton(): event listener for the start button to switch page to question page
 quizApp.startButton = () => {
     const firstButton = document.getElementById("startButton")
-    // add event listener to display question page to flex and landing page to none
+
+    // event listener to display .questionPage and hide .landingPage
     firstButton.addEventListener('click', () => {
-        console.log(this)
         document.querySelector('.landingPage').style.display = 'none',
             document.querySelector('.questionPage').style.display = 'flex'
     })
 }
 
+// checkTextLength(): checks answer text length and adjust size/padding if text.length was too long
 quizApp.checkTextLength = () => {
     const allAnswers = document.querySelectorAll('label');
     allAnswers.forEach(item => {
-        // if (item.textContent.length > 20) {
-        //     const label = document.getElementById(item.textContent)
-        //     label.nextElementSibling.style.fontSize = '14px';
-        //     console.log(label);
-        // } else 
         if (item.textContent.length > 16) {
             const label = document.getElementById(item.textContent)
             label.nextElementSibling.style.fontSize = '18px';
@@ -134,10 +142,9 @@ quizApp.checkTextLength = () => {
     })
 }
 
+// getScore(): calculates the score based on the user checked answers
 quizApp.getScore = () => {
-
     let score = 0;
-
     for (let i = 1; i <= quizApp.topTen.length; i++) {
         const answerNodeList = document.querySelectorAll(`input[name='answers${i}']`);
         answerNodeList.forEach(item => {
@@ -147,65 +154,64 @@ quizApp.getScore = () => {
                     score = score + 1;
                     item.checked = false;
                     item.nextElementSibling.className = "correct";
-                    console.log(item)
-                } else{
+                } else {
                     item.checked = false;
                     item.nextElementSibling.className = "incorrect";
                 }
-            } else{
+            } else {
                 item.disabled = true;
                 if (item.id === quizApp.topTen[i - 1].name.common) {
                     item.nextElementSibling.className = "correct";
-                    
-            }}
-
-        
+                }
+            }
         })
     }
-    console.log(score)
 
+    // add scoreCard to page
     const scoreSheet = document.createElement('div');
-        scoreSheet.className = "score";
-        scoreSheet.innerHTML = `<h2>Your score is ${score} out of 10!`;
-        questionPack.appendChild(scoreSheet);
+    scoreSheet.className = "score";
+    scoreSheet.innerHTML = `<h2>Your score is ${score} out of 10!`;
+    questionPack.appendChild(scoreSheet);
 
+    // restart button to restart the game with new data
     const restartBtn = document.createElement('button');
-        restartBtn.className = "uppercase restart";
-        restartBtn.innerText = "Restart"
-        scoreSheet.appendChild(restartBtn);
+    restartBtn.className = "uppercase restart";
+    restartBtn.innerText = "Restart"
+    scoreSheet.appendChild(restartBtn);
 
-        restartBtn.addEventListener('click', () =>{
-            document.querySelector("#questionPack").innerHTML = "";
-            quizApp.getData();
-        })
+    restartBtn.addEventListener('click', () => {
+        document.querySelector("#questionPack").innerHTML = "";
+        quizApp.getData();
+    })
 
 }
 
-quizApp.displayScore = () => {
-    getScore();
-}
-
-
-    // run getScore
-    // append to HTML, dom stuff with score/10
-    // append to questionPack
-
+// submitQuiz(): when submit button is pressed, run getScore() to calculate and display score, then hide the submit button
 quizApp.submitQuiz = () => {
-    // event listener for the submit button
-    // runs displayScore
     const submitBtn = document.getElementById('submitBtn')
     submitBtn.addEventListener('click', () => {
         quizApp.getScore();
         submitBtn.style.display = 'none';
-
-
-
-
     })
 }
 
+// displayError(): displays error message and disables game start button on landing page if fetch was unsuccessful
+quizApp.displayError = () => {
+    const startBtn = document.getElementById('startButton')
+    startBtn.disabled = true;
+    startBtn.classList.add('disabledBtn')
+
+    const errorMessage = document.createElement('p')
+    errorMessage.className = "errorText"
+    errorMessage.textContent = "Sorry! We failed to load the quiz questions from the server, please try again!"
+
+    const landingPage = document.querySelector('.landingPage .blueBox');
+    landingPage.appendChild(errorMessage);
+}
+
 // Durstenfeld Shuffle algorithm, used to shuffle our retrieved countries array of objects to make sure we get different questions each run
-const shuffleArray = (array) => {
+// Credit: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+quizApp.shuffleArray = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [array[i], array[j]] = [array[j], array[i]];
@@ -213,5 +219,5 @@ const shuffleArray = (array) => {
     return array;
 }
 
-// calling the quizApp
+// calling the quizApp once the page has loaded
 quizApp.init();
