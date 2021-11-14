@@ -1,0 +1,59 @@
+section{
+    background-color: #FFFDF6;
+}
+
+.landingPage{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.landingPage button{
+    font-weight: bold;
+}
+.blueBox{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #77A6B6;
+    border-radius: 10px;
+    max-width: 1200px;
+    width: 80%;
+    height: 90%;
+    min-height: 500px;
+    padding-top: 50px;
+    text-align: center;
+}
+
+.spanLanding{
+    display: inline-block;
+    margin-top: 30px;
+}
+
+button{
+    background-color: #78B677;
+    border: none;
+    padding: 15px;
+    width: 100px;
+    border-radius: 20px;
+}
+
+// RESPONSIVE STYLING::after
+
+@media (max-width: 940px){
+
+    .landingPage{
+        min-height: 700px;
+    }
+
+    .landingPage .blueBox {
+        height: 100%;
+        width: 100%;
+        border-radius: 0;
+    }
+}
