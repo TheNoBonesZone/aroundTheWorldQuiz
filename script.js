@@ -83,7 +83,7 @@ quizApp.displayFlagQ = () => {
         questionCard.innerHTML = `
             <h2>Question ${i + 1}</h2> 
             <h3> What country does this flag belong to?</h3> 
-            <img src='${quizApp.topTen[i].flags.png}' alt='flag of ${quizApp.topTen[i].name.common}'>
+            <img src='${quizApp.topTen[i].flags.png}' alt='flag of question ${i + 1}'>
             `
 
         // make answers/buttons for each question: store answers into an array with correct answer + 3 random answer from generated answer bank
