@@ -206,7 +206,7 @@ quizApp.displayError = () => {
     errorMessage.className = "errorText"
     errorMessage.textContent = "Sorry! We failed to load the quiz questions from the server, please try again!"
 
-    const landingPage = document.querySelector('.landingPage .blueBox');
+    const landingPage = document.querySelector('.landingPage .wrapper');
     landingPage.appendChild(errorMessage);
 }
 

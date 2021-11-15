@@ -347,6 +347,14 @@ button {
   border: none;
 }
 
+.errorText {
+  color: #dd4f4f;
+}
+
+.disabledBtn {
+  background-color: grey;
+}
+
 @media (max-width: 940px) {
   .landingPage {
     min-height: 700px;

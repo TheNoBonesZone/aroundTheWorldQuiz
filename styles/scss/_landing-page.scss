@@ -36,6 +36,14 @@ button {
     border: none;
 }
 
+.errorText {
+    color: #dd4f4f;
+}
+
+.disabledBtn {
+    background-color: grey;
+}
+
 // RESPONSIVE STYLING::after
 
 @media (max-width: 940px) {
