@@ -2,16 +2,21 @@
 @import 'typography';
 @import 'landing-page';
 
+// GENERAL
+body, section {
+    background-color: #77A6B6;
+}
+
 // QUESTION CARD STYLING
 
-.questionPage{
+.questionPage {
     display: none;
     // display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 20px;
 }
-.questionCard{
+
+.questionCard {
     display: flex;
     flex-direction: column;
     max-width: 1200px;
@@ -21,10 +26,16 @@
     border-radius: 10px;
     align-items: center;
     img {
-        width: 70%;
+        object-fit: cover;
+        max-height: 500px;
+        width: 50%;
         border: 1px solid #C5C6C6;
         border-radius: 10px;
     }
+}
+
+.incorrectCard {
+    background-color: #ffdede
 }
 
 .answerBox {
@@ -33,56 +44,60 @@
     width: 80%;
     gap: 20px;
     margin: 40px;
+
+    input[type="radio"] {
+        opacity: 0;
+        position: fixed;
+        width: 0;
+    }
+
+    label {
+        box-sizing: border-box;
+        padding: 10px 20px;
+        height: 50px;
+        width: 100%;
+        background-color: #9AB8C2;
+        border-radius: 20px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    label.correct {
+        background-color: #75CB6E;
+        border: none;
+    }
+    label.incorrect {
+        background-color: #D43A3A;
+        border: none;
+    }
+
+    label:hover, 
+    label:focus-within {
+        background-color: #71878f;
+    }
+
+    input[type="radio"]:checked + label,
+    input[type="radio"]:focus-within + label {
+        background-color: #3F606B;
+        border: 2px solid #6EA3A1;
+    }
+
+    button{
+        background-color: #9AB8C2;
+        border-radius: 20px;
+        margin: 0 auto;
+        width: calc(50% - 20px);
+    }
+
+    > div {
+        width: calc(50% - 20px);
+    }
 }
 
-.answerBox > div {
-    width: calc(50% - 20px);
-}
-
-.answerBox input[type="radio"]{
-    opacity: 0;
-    position: fixed;
-    width: 0;
-}
-
-.answerBox label {
-    box-sizing: border-box;
-    padding: 10px 20px;
-    height: 50px;
-    width: 100%;
-    background-color: #9AB8C2;
-    border-radius: 20px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.answerBox input[type="radio"]:checked + label,
-.answerBox input[type="radio"]:focus-within + label {
-    background-color: #3F606B;
-    border: 2px solid #89B467;
-}
-
-.answerBox label.correct {
-    background-color: #75CB6E;
-    border: none;
-}
-.answerBox label.incorrect {
-    background-color: #D43A3A;
-    border: none;
-}
-
-.answerBox button{
-    background-color: #9AB8C2;
-    border-radius: 20px;
-    // flex-basis: 400px;
-    margin: 0 auto;
-    width: calc(50% - 20px);
-}
-
-.blueBox button {
-    padding: 5px 15px;
+.wrapper button {
+    padding: 9px 15px;
     width: 200px;
     border-radius: 20px;
     margin-bottom: 75px;
@@ -98,50 +113,52 @@
     margin-bottom: 5%;
     border-radius: 10px;
     align-items: center;
-    gap: 60px;
-    padding: 20px;
-}
+    gap: 25px;
+    padding: 35px;
 
-.score h2, .score button{
-    margin: 0;
-}
+    h2, 
+    button {
+        margin: 0;
+    }
 
-.score button{
-    padding: 15px 15px;
+    button {
+        padding: 15px 15px;
+    }
 }
-
-// RESPONSIVE:
-// 940, 768, 480
-// make min height 
-// after 940 blue takes up everything
-// card stays within same width (give max width also)
-// font sizes after 768?
-// 480: cards tight to edges, flex column on answer buttons
 
 // RESPONSIVE STYLING:
 
-@media (max-width: 940px){
-    .questionPage{
+@media (max-width: 940px) {
+    .questionPage {
         height: 100%;
-    }
-    .questionPage .blueBox{
-        width: 100%;
-        border-radius: 0;
-        margin: 0 auto;
+        
+        .wrapper {
+            padding-top: 5px;
+            width: 100%;
+            border-radius: 0;
+            margin: 0 auto;
+        }
     }
 
-    .questionCard{
-        width: 80%;
+    .questionCard {
+        width: 90%;
     }
 }
 
-@media (max-width: 480px){
-    .questionCard{
-        width: 100%;
-        border-radius: 0;
+@media (max-width: 480px) {
+    .questionCard {
+        width: 95%;
+        border-radius: 5px;
+        h3 {
+            font-size: 0.9rem;
+            width: 90%;
+        }
     }
 
-    .answerBox > div{
-        width: 100%;
+    .answerBox {
+        width: 90%;
+        > div {
+            width: 100%;
+        }
     }
 }

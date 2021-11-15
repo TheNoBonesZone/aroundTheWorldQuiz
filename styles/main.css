@@ -240,7 +240,11 @@ html {
 }
 
 p, button, h2, h3, label {
-  font-family: "Roboto", sans-serif;
+  font-family: "Baloo Thambi 2", sans-serif;
+}
+
+p, h1, button, label {
+  color: white;
 }
 
 h1 {
@@ -249,6 +253,24 @@ h1 {
 
 h2 {
   margin-bottom: 0;
+  color: #605F5F;
+}
+
+h3 {
+  color: black;
+}
+
+.title, .caption {
+  font-family: "Caveat Brush", sans-serif;
+  font-size: 1rem;
+}
+
+.caption {
+  font-size: 2rem;
+}
+
+.startBtn {
+  font-family: "Baloo Thambi 2", sans-serif;
 }
 
 .uppercase {
@@ -259,22 +281,10 @@ h2 {
   font-weight: bold;
 }
 
-p, h1, button, label {
-  color: white;
-}
-
 label {
   text-transform: uppercase;
   font-weight: 500;
   line-height: 30px;
-}
-
-h2 {
-  color: #605F5F;
-}
-
-h3 {
-  color: black;
 }
 
 @media (max-width: 768px) {
@@ -282,10 +292,6 @@ h3 {
     line-height: 25px;
   }
 }
-section {
-  background-color: #FFFDF6;
-}
-
 .landingPage {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -304,12 +310,11 @@ section {
       -ms-flex-align: center;
           align-items: center;
 }
-
 .landingPage button {
   font-weight: bold;
 }
 
-.blueBox {
+.wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -324,7 +329,6 @@ section {
       -ms-flex-pack: center;
           justify-content: center;
   background-color: #77A6B6;
-  border-radius: 10px;
   max-width: 1200px;
   width: 80%;
   height: 100%;
@@ -341,9 +345,6 @@ section {
 button {
   background-color: #78B677;
   border: none;
-  padding: 15px;
-  width: 100px;
-  border-radius: 20px;
 }
 
 @media (max-width: 940px) {
@@ -351,16 +352,16 @@ button {
     min-height: 700px;
   }
 
-  .landingPage .blueBox {
+  .landingPage .wrapper {
     height: 100%;
     width: 100%;
     border-radius: 0;
   }
 }
 @media (max-width: 480px) {
-  .landingPage .blueBox p,
-.landingPage .blueBox h1,
-.landingPage .blueBox .spanLanding {
+  .landingPage .wrapper p,
+.landingPage .wrapper h1,
+.landingPage .wrapper .spanLanding {
     width: 80%;
   }
 
@@ -377,6 +378,10 @@ button {
             align-items: center;
   }
 }
+body, section {
+  background-color: #77A6B6;
+}
+
 .questionPage {
   display: none;
   -webkit-box-pack: center;
@@ -385,7 +390,6 @@ button {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin-bottom: 20px;
 }
 
 .questionCard {
@@ -406,9 +410,16 @@ button {
           align-items: center;
 }
 .questionCard img {
-  width: 70%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  max-height: 500px;
+  width: 50%;
   border: 1px solid #C5C6C6;
   border-radius: 10px;
+}
+
+.incorrectCard {
+  background-color: #ffdede;
 }
 
 .answerBox {
@@ -421,17 +432,11 @@ button {
   gap: 20px;
   margin: 40px;
 }
-
-.answerBox > div {
-  width: calc(50% - 20px);
-}
-
 .answerBox input[type=radio] {
   opacity: 0;
   position: fixed;
   width: 0;
 }
-
 .answerBox label {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -451,32 +456,35 @@ button {
       -ms-flex-align: center;
           align-items: center;
 }
-
-.answerBox input[type=radio]:checked + label,
-.answerBox input[type=radio]:focus-within + label {
-  background-color: #3F606B;
-  border: 2px solid #89B467;
-}
-
 .answerBox label.correct {
   background-color: #75CB6E;
   border: none;
 }
-
 .answerBox label.incorrect {
   background-color: #D43A3A;
   border: none;
 }
-
+.answerBox label:hover,
+.answerBox label:focus-within {
+  background-color: #71878f;
+}
+.answerBox input[type=radio]:checked + label,
+.answerBox input[type=radio]:focus-within + label {
+  background-color: #3F606B;
+  border: 2px solid #6EA3A1;
+}
 .answerBox button {
   background-color: #9AB8C2;
   border-radius: 20px;
   margin: 0 auto;
   width: calc(50% - 20px);
 }
+.answerBox > div {
+  width: calc(50% - 20px);
+}
 
-.blueBox button {
-  padding: 5px 15px;
+.wrapper button {
+  padding: 9px 15px;
   width: 200px;
   border-radius: 20px;
   margin-bottom: 75px;
@@ -501,14 +509,13 @@ button {
   margin-bottom: 5%;
   border-radius: 10px;
   align-items: center;
-  gap: 60px;
-  padding: 20px;
+  gap: 25px;
+  padding: 35px;
 }
-
-.score h2, .score button {
+.score h2,
+.score button {
   margin: 0;
 }
-
 .score button {
   padding: 15px 15px;
 }
@@ -517,23 +524,30 @@ button {
   .questionPage {
     height: 100%;
   }
-
-  .questionPage .blueBox {
+  .questionPage .wrapper {
+    padding-top: 5px;
     width: 100%;
     border-radius: 0;
     margin: 0 auto;
   }
 
   .questionCard {
-    width: 80%;
+    width: 90%;
   }
 }
 @media (max-width: 480px) {
   .questionCard {
-    width: 100%;
-    border-radius: 0;
+    width: 95%;
+    border-radius: 5px;
+  }
+  .questionCard h3 {
+    font-size: 0.9rem;
+    width: 90%;
   }
 
+  .answerBox {
+    width: 90%;
+  }
   .answerBox > div {
     width: 100%;
   }

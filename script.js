@@ -79,7 +79,7 @@ quizApp.displayFlagQ = () => {
     // make a question for each of the selected countries in the topTen array:
     for (let i = 0; i < quizApp.topTen.length; i++) {
         const questionCard = document.createElement('div')
-        questionCard.className = 'questionCard'
+        questionCard.classList = `questionCard question${i + 1}`
         questionCard.innerHTML = `
             <h2>Question ${i + 1}</h2> 
             <h3> What country does this flag belong to?</h3> 
@@ -111,7 +111,7 @@ quizApp.displayFlagQ = () => {
     const submitButton = document.createElement('button')
     submitButton.className = 'uppercase'
     submitButton.id = 'submitBtn'
-    submitButton.innerHTML = '<p>Submit Quiz</p>'
+    submitButton.textContent = 'Submit Quiz'
     questionBox.appendChild(submitButton)
 
     quizApp.checkTextLength();
@@ -157,6 +157,7 @@ quizApp.getScore = () => {
                 } else {
                     item.checked = false;
                     item.nextElementSibling.className = "incorrect";
+                    document.querySelector(`.question${i}`).classList.add('incorrectCard')
                 }
             } else {
                 item.disabled = true;

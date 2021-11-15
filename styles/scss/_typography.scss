@@ -2,17 +2,40 @@ html{
     font-size: 125%;
 }
 
-p, button, h2, h3, label{
-    font-family: 'Roboto', sans-serif;
+p, button, h2, h3, label {
+    font-family: 'Baloo Thambi 2', sans-serif;
 }
 
-h1{
+p, h1, button, label{
+    color: white;
+}
+
+h1 {
     font-family: 'Rowdies', cursive;
 }
 
-h2{
+h2 {
     margin-bottom: 0;
+    color:#605F5F;
 }
+
+h3{
+    color: black;
+}
+
+.title, .caption {
+    font-family: 'Caveat Brush', sans-serif;
+    font-size: 1rem;
+}
+
+.caption {
+    font-size: 2rem;
+}
+
+.startBtn {
+    font-family: 'Baloo Thambi 2', sans-serif;
+}
+
 .uppercase{
     text-transform: uppercase;
 }
@@ -21,23 +44,10 @@ h2{
     font-weight: bold;
 }
 
-p, h1, button, label{
-    color: white;
-}
-
 label {
     text-transform: uppercase;
     font-weight: 500;
     line-height: 30px;
-}
-
-h2{
-    color:#605F5F;
-;
-}
-
-h3{
-    color: black;
 }
 
 // RESPONSIVE STYLING:

@@ -1,8 +1,4 @@
-section{
-    background-color: #FFFDF6;
-}
-
-.landingPage{
+.landingPage {
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -10,18 +6,18 @@ section{
     margin: 0 auto;
     justify-content: center;
     align-items: center;
+
+    button {
+        font-weight: bold;
+    }
 }
 
-.landingPage button{
-    font-weight: bold;
-}
-.blueBox{
+.wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     background-color: #77A6B6;
-    border-radius: 10px;
     max-width: 1200px;
     width: 80%;
     height: 100%;
@@ -30,42 +26,39 @@ section{
     text-align: center;
 }
 
-.spanLanding{
+.spanLanding {
     display: inline-block;
     margin-top: 30px;
 }
 
-button{
+button {
     background-color: #78B677;
     border: none;
-    padding: 15px;
-    width: 100px;
-    border-radius: 20px;
 }
 
 // RESPONSIVE STYLING::after
 
-@media (max-width: 940px){
+@media (max-width: 940px) {
 
-    .landingPage{
+    .landingPage {
         min-height: 700px;
     }
 
-    .landingPage .blueBox {
+    .landingPage .wrapper {
         height: 100%;
         width: 100%;
         border-radius: 0;
     }
 }
 
-@media (max-width: 480px){
-    .landingPage .blueBox p,
-    .landingPage .blueBox h1,
-    .landingPage .blueBox .spanLanding {
+@media (max-width: 480px) {
+    .landingPage .wrapper p,
+    .landingPage .wrapper h1,
+    .landingPage .wrapper .spanLanding {
         width: 80%;
     }
 
-    .spanLanding{
+    .spanLanding {
         display: flex;
         flex-direction: column;
         align-items: center;
