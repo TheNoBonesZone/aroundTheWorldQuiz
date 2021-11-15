@@ -136,6 +136,24 @@ body, section {
     }
 }
 
+footer {
+    height: 3vh;
+    p {
+        margin: 0;
+        text-align: center;
+        font-size: 0.75rem;
+    }
+    
+    a {
+        color: #ffffff;
+        text-decoration: underline;
+    }
+
+    a:hover {
+        color:#498146; 
+    }
+}
+
 // RESPONSIVE STYLING:
 
 @media (max-width: 940px) {
@@ -156,12 +174,19 @@ body, section {
 }
 
 @media (max-width: 480px) {
+    .landingPage > .wrapper > p.caption {
+        font-size: 1.25rem;
+    }
+
     .questionCard {
         width: 95%;
         border-radius: 5px;
         h3 {
             font-size: 0.9rem;
             width: 90%;
+        }
+        img {
+            width: 75%;
         }
     }
 
@@ -170,5 +195,13 @@ body, section {
         > li {
             width: 100%;
         }
+    }
+
+    .score {
+        width: 95%;
+    }
+
+    footer p {
+        font-size: 0.5rem;
     }
 }
