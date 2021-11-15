@@ -17,7 +17,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #77A6B6;
+    background-color: #405B72;
     max-width: 1200px;
     width: 80%;
     height: 100%;
@@ -32,7 +32,7 @@
 }
 
 button {
-    background-color: #78B677;
+    background-color: #498146;
     border: none;
 }
 
@@ -42,6 +42,7 @@ button {
 
 .disabledBtn {
     background-color: grey;
+    pointer-events: none;
 }
 
 // RESPONSIVE STYLING::after

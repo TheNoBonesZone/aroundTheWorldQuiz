@@ -4,7 +4,7 @@
 
 // GENERAL
 body, section {
-    background-color: #77A6B6;
+    background-color: #405B72;
 }
 
 // QUESTION CARD STYLING
@@ -44,6 +44,13 @@ body, section {
     width: 80%;
     gap: 20px;
     margin: 40px;
+    padding-left: 0;
+
+    > li {
+        list-style: none;
+        width: calc(50% - 20px);
+        display: inline-block;
+    }
 
     input[type="radio"] {
         opacity: 0;
@@ -56,7 +63,8 @@ body, section {
         padding: 10px 20px;
         height: 50px;
         width: 100%;
-        background-color: #9AB8C2;
+        // background-color: #9AB8C2;
+        background-color: #405968;
         border-radius: 20px;
         margin: 0 auto;
         display: flex;
@@ -65,12 +73,14 @@ body, section {
     }
     
     label.correct {
-        background-color: #75CB6E;
+        background-color: #498146;
         border: none;
+        pointer-events: none;
     }
     label.incorrect {
         background-color: #D43A3A;
         border: none;
+        pointer-events: none;
     }
 
     label:hover, 
@@ -80,8 +90,8 @@ body, section {
 
     input[type="radio"]:checked + label,
     input[type="radio"]:focus-within + label {
-        background-color: #3F606B;
-        border: 2px solid #6EA3A1;
+        background-color: #00AAE2;
+        border: 2px solid #38403F;
     }
 
     button{
@@ -157,7 +167,7 @@ body, section {
 
     .answerBox {
         width: 90%;
-        > div {
+        > li {
             width: 100%;
         }
     }

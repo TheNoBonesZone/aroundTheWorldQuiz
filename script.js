@@ -94,11 +94,11 @@ quizApp.displayFlagQ = () => {
         }
         quizApp.shuffleArray(answerArray);
 
-        const answerBox = document.createElement('div');
+        const answerBox = document.createElement('ul');
         answerBox.className = 'answerBox';
 
         answerArray.forEach(answer => {
-            const btnBox = document.createElement('div');
+            const btnBox = document.createElement('li');
             btnBox.innerHTML = `<input type="radio" name="answers${i + 1}" id="${answer}">
                     <label for="${answer}">${answer}</label>`
             answerBox.appendChild(btnBox);
@@ -153,16 +153,18 @@ quizApp.getScore = () => {
                 if (item.id === quizApp.topTen[i - 1].name.common) {
                     score = score + 1;
                     item.checked = false;
-                    item.nextElementSibling.className = "correct";
+                    item.nextElementSibling.className = "correct noHover";
                 } else {
                     item.checked = false;
-                    item.nextElementSibling.className = "incorrect";
+                    item.nextElementSibling.className = "incorrect noHover";
                     document.querySelector(`.question${i}`).classList.add('incorrectCard')
                 }
             } else {
                 item.disabled = true;
                 if (item.id === quizApp.topTen[i - 1].name.common) {
-                    item.nextElementSibling.className = "correct";
+                    item.nextElementSibling.className = "correct noHover";
+                } else {
+                    item.nextElementSibling.className = "disabledBtn"
                 }
             }
         })
